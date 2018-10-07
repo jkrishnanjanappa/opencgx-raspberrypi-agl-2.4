@@ -50,7 +50,13 @@ LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-cloud-services.git
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-cgl;branch=rocko \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=rocko;layer=meta-qa-framework \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=rocko;layer=meta-qa-testsuites \
-MACHINE@qemux86-64 \
+LAYER@https://git.yoctoproject.org/git/meta-raspberrypi;branch=rocko \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-profile-core \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-distro \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-bsp \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-security \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-app-framework \
+MACHINE@raspberrypi3 \
 DISTRO@mvista-cgx \
 SOURCE@https://github.com/MontaVista-OpenSourceTechnology/linux-mvista-2.4;branch=mvl-4.14/msd.cgx;meta=MV_KERNEL \
 SOURCE@https://github.com/MontaVista-OpenSourceTechnology/yocto-kernel-cache;branch=yocto-4.14;meta=MV_KERNELCACHE \
@@ -190,6 +196,46 @@ for config in $REPO_CONFIG; do
           echo >> conf/local-content.conf
     fi
 done
+
+# AGL configuration settings
+echo 'OECMAKE_C_COMPILER_class-target_forcevariable = "$(which $(echo ${CC} | sed 's/^\([^ ]*\).*/\1/'))"' >> conf/local-content.conf
+echo 'OECMAKE_CXX_COMPILER_class-target_forcevariable = "$(which $(echo ${CXX} | sed 's/^\([^ ]*\).*/\1/'))"' >> conf/local-content.conf
+
+echo >> conf/local-content.conf
+echo 'require conf/include/base-agl.inc' >> conf/local-content.conf
+echo 'require conf/include/agl-appfw-smack.inc' >> conf/local-content.conf
+echo 'require conf/include/agl-devel.inc' >> conf/local-content.conf
+echo 'require conf/include/agl_raspberrypi3.inc' >> conf/local-content.conf
+echo >> conf/local-content.conf
+
+echo 'AGL_APP_REVISION = "${AUTOREV}"' >> conf/local-content.conf
+echo 'DISTRO_FEATURES_append = " systemd "' >> conf/local-content.conf
+echo 'AGL_BRANCH = "master"' >> conf/local-content.conf
+echo 'AGLVERSION = "6.90.0"' >> conf/local-content.conf
+echo >> conf/local-content.conf
+
+echo 'AGL_DEFAULT_DISTRO_FEATURES = "largefile systemd opengl wayland pam bluetooth bluez5"' >> conf/local-content.conf
+echo 'POKY_DEFAULT_DISTRO_FEATURES := "${AGL_DEFAULT_DISTRO_FEATURES}"' >> conf/local-content.conf
+echo 'USE_SYSTEMD = "1"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_wayland-ivi-extension ?= "2.0.%"' >> conf/local-content.conf
+echo >> conf/local-content.conf
+
+# Prefer GStreamer 1.10.x by default
+echo 'PREFERRED_VERSION_gstreamer1.0              ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-plugins-bad  ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-plugins-base ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-plugins-good ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-plugins-ugly ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-libav        ?= "1.12.%"' >> conf/local-content.conf
+echo 'PREFERRED_VERSION_gstreamer1.0-omx          ?= "1.12.%"' >> conf/local-content.conf
+echo >> conf/local-content.conf
+
+echo 'VIRTUAL-RUNTIME_net_manager = "connman"' >> conf/local-content.conf 
+
+echo 'BBFILES_append += "${TOPDIR}/../extra/recipes/*/*.bb ${TOPDIR}/../extra/recipes/*/*.bbappend"' >> conf/local-content.conf
+echo 'BBPATH_prepend = "${TOPDIR}/../extra/:"' >> conf/local-content.conf
+echo >> conf/local-content.conf
+
 if [ -n "$SOURCE_MIRROR_URL" ] ; then
    if [ -z "$(echo $SOURCE_MIRROR_URL | grep "://")" ] ; then
       # Assume file

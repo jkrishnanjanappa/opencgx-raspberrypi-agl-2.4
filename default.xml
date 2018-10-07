@@ -14,6 +14,8 @@
 	<project name="MontaVista-OpenSourceTechnology/meta-cgl.git" remote="github.com" path="layers/meta-cgl" revision="rocko"/>
 	<project name="MontaVista-OpenSourceTechnology/meta-cloud-services.git" remote="github.com" path="layers/meta-cloud-services" revision="rocko"/>
 	<project name="MontaVista-OpenSourceTechnology/meta-montavista-cgl" remote="github.com" path="layers/meta-montavista-cgl" revision="rocko"/>
+	<project name="git/meta-raspberrypi" remote="git.yoctoproject.org" path="layers/meta-raspberrypi" revision="rocko"/>
+	<project name="AGL/meta-agl" remote="git.automotivelinux.org" path="layers/meta-agl" revision="master"/>
 	<project name="MontaVista-OpenSourceTechnology/linux-mvista-2.4" remote="github.com" path="sources/linux-mvista-2.4" revision="mvl-4.14/msd.cgx"/>
 	<project name="MontaVista-OpenSourceTechnology/yocto-kernel-cache" remote="github.com" path="sources/yocto-kernel-cache" revision="yocto-4.14"/>
 	<project name="MontaVista-OpenSourceTechnology/opencgx-qemu-4.14-2.4" remote="github.com" path="." revision="master"/>

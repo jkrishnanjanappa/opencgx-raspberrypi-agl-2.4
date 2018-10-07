@@ -54,3 +54,11 @@
 	path = layers/meta-qa
 	url = https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git
 	branch = rocko
+[submodule "layers/meta-raspberrypi"]
+	path = layers/meta-raspberrypi
+	url = https://git.yoctoproject.org/git/meta-raspberrypi
+	branch = rocko
+[submodule "layers/meta-agl"]
+	path = layers/meta-agl
+	url = https://git.automotivelinux.org/AGL/meta-agl
+	branch = master
