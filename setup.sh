@@ -198,8 +198,8 @@ for config in $REPO_CONFIG; do
 done
 
 # AGL configuration settings
-echo 'OECMAKE_C_COMPILER_class-target_forcevariable = "$(which $(echo ${CC} | sed 's/^\([^ ]*\).*/\1/'))"' >> conf/local-content.conf
-echo 'OECMAKE_CXX_COMPILER_class-target_forcevariable = "$(which $(echo ${CXX} | sed 's/^\([^ ]*\).*/\1/'))"' >> conf/local-content.conf
+echo 'OECMAKE_C_COMPILER_class-target_forcevariable = "$(which $(echo ${CC} | sed "s/^\([^ ]*\).*/\1/"))"' >> conf/local-content.conf
+echo 'OECMAKE_CXX_COMPILER_class-target_forcevariable = "$(which $(echo ${CXX} | sed "s/^\([^ ]*\).*/\1/"))"' >> conf/local-content.conf
 
 echo >> conf/local-content.conf
 echo 'require conf/include/base-agl.inc' >> conf/local-content.conf
