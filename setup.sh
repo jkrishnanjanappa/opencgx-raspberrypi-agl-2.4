@@ -57,6 +57,8 @@ LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-
 LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-bsp \
 LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-security \
 LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-app-framework \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-profile-graphical \
+LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-profile-graphical-qt5 \
 MACHINE@raspberrypi3 \
 DISTRO@mvista-cgx \
 SOURCE@https://github.com/MontaVista-OpenSourceTechnology/linux-mvista-2.4;branch=mvl-4.14/msd.cgx;meta=MV_KERNEL \
@@ -210,7 +212,7 @@ echo 'require conf/include/agl_raspberrypi3.inc' >> conf/local-content.conf
 echo >> conf/local-content.conf
 
 echo 'AGL_APP_REVISION = "${AUTOREV}"' >> conf/local-content.conf
-echo 'DISTRO_FEATURES_append = " systemd "' >> conf/local-content.conf
+echo 'DISTRO_FEATURES_append = " systemd wayland "' >> conf/local-content.conf
 echo 'AGL_BRANCH = "master"' >> conf/local-content.conf
 echo 'AGLVERSION = "6.90.0"' >> conf/local-content.conf
 echo >> conf/local-content.conf
