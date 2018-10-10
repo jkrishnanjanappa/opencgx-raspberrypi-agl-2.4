@@ -90,3 +90,4 @@ agl-passenger::1002:
 systemd-network::1005:
 systemd-resolve::1006:
 test::5000:
+syslog::5001:

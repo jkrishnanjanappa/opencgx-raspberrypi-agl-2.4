@@ -62,3 +62,7 @@
 	path = layers/meta-agl
 	url = https://git.automotivelinux.org/AGL/meta-agl
 	branch = master
+[submodule "layers/meta-qt5"]
+	path = layers/meta-qt5
+	url = https://github.com/meta-qt5/meta-qt5.git
+	branch = rocko

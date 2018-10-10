@@ -50,6 +50,7 @@ LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-cloud-services.git
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-montavista-cgl;branch=rocko \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=rocko;layer=meta-qa-framework \
 LAYER@https://github.com/MontaVista-OpenSourceTechnology/meta-qa.git;branch=rocko;layer=meta-qa-testsuites \
+LAYER@https://github.com/meta-qt5/meta-qt5;branch=rocko \
 LAYER@https://git.yoctoproject.org/git/meta-raspberrypi;branch=rocko \
 LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-profile-core \
 LAYER@https://git.automotivelinux.org/AGL/meta-agl;branch=master;layer=meta-agl-distro \
